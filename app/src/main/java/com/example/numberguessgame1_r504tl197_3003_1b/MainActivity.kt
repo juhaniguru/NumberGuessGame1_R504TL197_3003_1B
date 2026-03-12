@@ -1,6 +1,7 @@
 package com.example.numberguessgame1_r504tl197_3003_1b
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.numberguessgame1_r504tl197_3003_1b.ui.theme.NumberGuessGame1_R504TL197_3003_1BTheme
 import kotlin.random.Random
+
 
 data class NumberGuessState(
     // tämä on käyttäjän syöttämä numero
@@ -111,7 +113,10 @@ fun NumberGuessScreenRoot(modifier: Modifier = Modifier) {
     NumberGuessScreen(
         guessText = state.value.guessText,
         number = state.value.number,
-        updateText = { state.value = state.value.copy(number = it) },
+        updateText = { newText ->
+                     Log.d("juhanitestaa", newText)
+                     state.value = state.value.copy(number = newText)
+                     },
         onGuess = { onGuess() },
         onNewGame = { onNewGame() }
     )
