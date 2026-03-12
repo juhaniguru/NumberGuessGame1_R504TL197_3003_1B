@@ -10,6 +10,49 @@ class NumberGuessScreenViewModel : ViewModel() {
     private val _state = MutableStateFlow(NumberGuessState())
     val state = _state.asStateFlow()
 
+    fun onGuess() {
+        try {
+            val numberInt = state.value.number.toInt()
+
+            if (numberInt == state.value.correctNumber) {
+
+                _state.update { currentState ->
+                    currentState.copy(
+                        correct = true,
+                        guessText = "Arvasit oikein! Siihen meni ${state.value.timesGuessed + 1} kertaa"
+                    )
+                }
+            } else {
+
+                var text = "Arvasit väärin"
+
+                if (numberInt > state.value.correctNumber) {
+                    text += ", arvauksesi on liian suuri"
+                } else {
+                    text += ", arvauksesi on liian pieni"
+                }
+
+
+
+                _state.update { currentState ->
+                    currentState.copy(guessText = text, correct = false)
+                }
+
+            }
+
+            _state.update { currentState ->
+                currentState.copy(timesGuessed = state.value.timesGuessed + 1)
+            }
+            // tässä ei ole virheviesteillä merkitystä
+            // pidetään vain huoli siitä, ettei sovellus kaadu
+            // jos käyttäjä syöttää kenttään tekstiä,
+            // jota ei voi muuttaa kokonaisluvuksi
+        } catch (e: Exception) {
+        }
+
+
+    }
+
     fun onNewGame() {
 
         _state.update { currentState ->

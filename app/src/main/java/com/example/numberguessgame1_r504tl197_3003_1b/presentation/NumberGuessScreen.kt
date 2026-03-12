@@ -20,51 +20,6 @@ import kotlin.random.Random
 fun NumberGuessScreenRoot(modifier: Modifier = Modifier) {
 
 
-
-
-
-
-
-
-
-    // tätä kutsutaan, kun
-    // käyttäjä painaa "Arvaa"-nappia
-    fun onGuess() {
-        try {
-            val numberInt = state.value.number.toInt()
-
-            if (numberInt == state.value.correctNumber) {
-
-                state.value = state.value.copy(
-                    correct = true,
-                    guessText = "Arvasit oikein! Siihen meni ${state.value.timesGuessed + 1} kertaa"
-                )
-            } else {
-
-                var text = "Arvasit väärin"
-
-                if (numberInt > state.value.correctNumber) {
-                    text += ", arvauksesi on liian suuri"
-                } else {
-                    text += ", arvauksesi on liian pieni"
-                }
-
-
-
-                state.value = state.value.copy(guessText = text, correct = false)
-
-            }
-
-            state.value = state.value.copy(timesGuessed = state.value.timesGuessed + 1)
-            // tässä ei ole virheviesteillä merkitystä
-            // pidetään vain huoli siitä, ettei sovellus kaadu
-            // jos käyttäjä syöttää kenttään tekstiä,
-            // jota ei voi muuttaa kokonaisluvuksi
-        } catch (e: Exception) {
-        }
-
-
-    }
     // juuricomposablessa kutsutaan @composablea, joka piirtää käyttöliittymän
     // tässä toteutuu state hoistin, koska
     // tila valuu alaspäin NumberGuessScreenille ja
