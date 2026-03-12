@@ -7,8 +7,17 @@ import kotlinx.coroutines.flow.update
 import kotlin.random.Random
 
 class NumberGuessScreenViewModel : ViewModel() {
+
+
     private val _state = MutableStateFlow(NumberGuessState())
     val state = _state.asStateFlow()
+
+    init {
+        val randomNumber = Random.nextInt(1, 101)
+        _state.update { currentState -> currentState.copy(correctNumber = randomNumber) }
+    }
+
+
 
     fun updateText(newText: String) {
         _state.update { currentState -> currentState.copy(number = newText) }
