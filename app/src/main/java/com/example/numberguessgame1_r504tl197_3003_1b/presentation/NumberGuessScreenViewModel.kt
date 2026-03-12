@@ -10,6 +10,10 @@ class NumberGuessScreenViewModel : ViewModel() {
     private val _state = MutableStateFlow(NumberGuessState())
     val state = _state.asStateFlow()
 
+    fun updateText(newText: String) {
+        _state.update { currentState -> currentState.copy(number = newText) }
+    }
+
     fun onGuess() {
         try {
             val numberInt = state.value.number.toInt()

@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.numberguessgame1_r504tl197_3003_1b.presentation.NumberGuessScreenRoot
 import com.example.numberguessgame1_r504tl197_3003_1b.ui.theme.NumberGuessGame1_R504TL197_3003_1BTheme
 import kotlin.random.Random
 
